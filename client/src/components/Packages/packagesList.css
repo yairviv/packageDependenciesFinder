@@ -1,0 +1,19 @@
+ul {
+  padding:0;
+  list-style:none;
+  width: 50%;
+  margin:auto;
+}
+
+li{
+  font-size:1.2rem;
+  line-height: 2rem;
+  border-bottom: 1px dotted #777;
+}
+
+.form-control{
+max-width: 35%;
+}
+.btn-outline-dark{
+ margin-right:800px;
+}
