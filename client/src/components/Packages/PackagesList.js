@@ -52,7 +52,7 @@ class PackagesList extends Component {
 
 
   getPackagesByName() {
-    if (this.state.packageName != "" && this.state.packageVersion != undefined) {
+    if (this.state.packageName !== "" && this.state.packageVersion !== undefined) {
       this.props.getPackagesByName({ packageName: this.state.packageName.trim(), packageVersion: this.state.packageVersion.trim() });
 
     }
@@ -61,15 +61,15 @@ class PackagesList extends Component {
   render() {
     return (
       <div>
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Package Name: </span>
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Package Name: </span>
         </div>
-        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventName) => this.onNameChanges(eventName)} value={this.state.packageName} ></input>
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Package Version: </span>
+        <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventName) => this.onNameChanges(eventName)} value={this.state.packageName} ></input>
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Package Version: </span>
         </div>
-        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventVersion) => this.onVersionChanges(eventVersion)} value={this.state.packageVersion} ></input>
-        <div class="searchFieldWrapper">
+        <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventVersion) => this.onVersionChanges(eventVersion)} value={this.state.packageVersion} ></input>
+        <div className="searchFieldWrapper">
           <input type="submit"
             value="Search"
             onClick={this.getPackagesByName} />
