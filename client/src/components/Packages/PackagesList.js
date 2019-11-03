@@ -78,8 +78,11 @@ class PackagesList extends Component {
         <h2>{this.state.packageVersion}</h2>
         <ul>
           {this.props.packages.map(devPackage =>
+          <li key ={devPackage}>
             <PackageRow value={devPackage}></PackageRow>
+            </li>
           )}
+          
         </ul>
       </div>
     );

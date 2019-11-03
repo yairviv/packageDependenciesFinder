@@ -2,9 +2,9 @@ import React from 'react';
 
 const PackageRow = ({ value }) => {
   return (
-    <li>
+  <div>
       Dependecy package name: {value[0]}, version: {value[1]}
-    </li>
+      </div>
   );
 };
 

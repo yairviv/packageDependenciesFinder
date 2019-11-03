@@ -7,7 +7,3 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
 });
 
-it('checks packagesListComponenctLogic', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
