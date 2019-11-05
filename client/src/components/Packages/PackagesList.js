@@ -11,8 +11,9 @@ class PackagesList extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      packageName: "",
-      packageVersion: "latest"
+      packageName: this.props.value !== undefined ? this.props.value[0] : "",
+      packageVersion: this.props.value !== undefined ? this.props.value[1] : "latest",
+      mainPackage: this.props.mainPackage
 
     }
     this.onNameChanges = this.onNameChanges.bind(this);
@@ -53,7 +54,7 @@ class PackagesList extends Component {
 
   getPackagesByName() {
     if (this.state.packageName !== "" && this.state.packageVersion !== undefined) {
-      this.props.getPackagesByName({ packageName: this.state.packageName.trim(), packageVersion: this.state.packageVersion.trim() });
+      this.props.getPackagesByName({ packageName: this.state.packageName.trim(), packageVersion: this.state.packageVersion.trim().replace('^', "") });
 
     }
   }
@@ -61,28 +62,35 @@ class PackagesList extends Component {
   render() {
     return (
       <div>
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">Package Name: </span>
+        {this.state.mainPackage === undefined &&
+          <div>
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon1">Package Name: </span>
+            </div>
+            <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventName) => this.onNameChanges(eventName)} value={this.state.packageName} ></input>
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon1">Package Version: </span>
+            </div>
+            <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventVersion) => this.onVersionChanges(eventVersion)} value={this.state.packageVersion} ></input>
+          </div>
+        }
+        <div >
+          <span className="searchFieldWrapper">
+            <input type="submit"
+              value="Search"
+              onClick={this.getPackagesByName} />
+          </span>
+          <span>
+            Dependecy package name: {this.state.packageName}, version: {this.state.packageVersion}
+          </span>
         </div>
-        <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventName) => this.onNameChanges(eventName)} value={this.state.packageName} ></input>
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">Package Version: </span>
-        </div>
-        <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" onChange={(eventVersion) => this.onVersionChanges(eventVersion)} value={this.state.packageVersion} ></input>
-        <div className="searchFieldWrapper">
-          <input type="submit"
-            value="Search"
-            onClick={this.getPackagesByName} />
-        </div>
-        <h2>{this.state.packageName}</h2>
-        <h2>{this.state.packageVersion}</h2>
         <ul>
           {this.props.packages.map(devPackage =>
-          <li key ={devPackage}>
-            <PackageRow value={devPackage}></PackageRow>
+            <li className="package_details" key={devPackage}>
+              <PackagesList value={devPackage} getPackagesByName={this.props.getPackagesByName} mainPackage={false}></PackagesList>
             </li>
           )}
-          
+
         </ul>
       </div>
     );

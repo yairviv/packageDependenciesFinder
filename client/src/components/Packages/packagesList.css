@@ -17,3 +17,11 @@ max-width: 35%;
 .btn-outline-dark{
  margin-right:800px;
 }
+
+.searchFieldWrapper{
+  margin-right: 10px;
+}
+
+.package_details{
+  margin-top: 10px;
+}
